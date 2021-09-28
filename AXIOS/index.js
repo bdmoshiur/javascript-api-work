@@ -26,64 +26,148 @@ console.clear();
 
 
 // Axios get method
-axios
-.get('https://jsonplaceholder.typicode.com/posts')
-.then((res) => console.log(res))
-.catch((err) => console.log(err));
+
+
+// axios
+// .get('https://jsonplaceholder.typicode.com/posts')
+// .then((res) => console.log(res))
+// .catch((err) => console.log(err));
 
 // Axios post method
-axios
-.post('https://jsonplaceholder.typicode.com/posts', {
-    method: 'POST',
-    body: JSON.stringify({
-      title: 'foo',
-      body: 'bar',
-      userId: 1,
-    }),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    }, 
-})
-.then((res) => console.log(res))
-.catch((err) => console.log(err));
+
+
+// axios
+// .post('https://jsonplaceholder.typicode.com/posts', {
+//     method: 'POST',
+//     body: JSON.stringify({
+//       title: 'foo',
+//       body: 'bar',
+//       userId: 1,
+//     }),
+//     headers: {
+//       'Content-type': 'application/json; charset=UTF-8',
+//     }, 
+// })
+// .then((res) => console.log(res))
+// .catch((err) => console.log(err));
 
 
 // Axios Update method
-axios
-.put('https://jsonplaceholder.typicode.com/posts/1', {
-    id: 1,
-    method: 'PUT',
-    body: JSON.stringify({
-      title: 'foo brrerere',
-      body: 'bar bsaghsdahgsad',
-      userId: 1,
-    }),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    }, 
-})
-.then((res) => console.log(res))
-.catch((err) => console.log(err));
+
+
+// axios
+// .put('https://jsonplaceholder.typicode.com/posts/1', {
+//     id: 1,
+//     method: 'PUT',
+//     body: JSON.stringify({
+//       title: 'foo brrerere',
+//       body: 'bar bsaghsdahgsad',
+//       userId: 1,
+//     }),
+//     headers: {
+//       'Content-type': 'application/json; charset=UTF-8',
+//     }, 
+// })
+// .then((res) => console.log(res))
+// .catch((err) => console.log(err));
 
 
 // Axios single Update method
-axios
-.patch('https://jsonplaceholder.typicode.com/posts/1', {
-    id: 1,
-    method: 'PATCH',
-    body: JSON.stringify({
-      body: 'bar bsaghsdahgsad update next step',
-    }),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    }, 
-})
-.then((res) => console.log(res))
-.catch((err) => console.log(err));
+// id / method / headers not required but you use its no problem
+
+
+// axios
+// .patch('https://jsonplaceholder.typicode.com/posts/1', {
+//     body: JSON.stringify({
+//       body: 'bar bsaghsdahgsad update next step',
+//     }),
+// })
+// .then((res) => console.log(res))
+// .catch((err) => console.log(err));
 
 
 // Axios delete method
-axios
-.delete('https://jsonplaceholder.typicode.com/posts/1')
-.then((res) => console.log(res))
-.catch((err) => console.log(err));
+
+
+// axios
+// .delete('https://jsonplaceholder.typicode.com/posts/1')
+// .then((res) => console.log(res))
+// .catch((err) => console.log(err));
+
+
+
+// Axios Async/await use API request
+
+const makeRequest = async (config) => {
+    return await axios(config);
+}
+
+
+// get data
+const getData = () => {
+    makeRequest('https://jsonplaceholder.typicode.com/posts/1')
+    .then((res)=> console.log(res.data))
+    .catch((err) => console.log(err));
+}
+
+//post data
+const postData = () => {
+    makeRequest({
+        url : 'https://jsonplaceholder.typicode.com/posts',
+        method: 'POST',
+        body: JSON.stringify({
+            title: 'foo',
+            body: 'bar',
+            userId: 1,
+        })
+    })
+    .then((res)=> console.log(res.data))
+    .catch((err) => console.log(err));
+}
+
+
+//update data
+const updateData = () => {
+    makeRequest({
+        url : 'https://jsonplaceholder.typicode.com/posts/1',
+        method: 'PUT',
+        body: JSON.stringify({
+            id : 1,
+            title: 'foo one step',
+            body: 'bar one step',
+            userId: 1,
+        })
+    })
+    .then((res)=> console.log(res.data))
+    .catch((err) => console.log(err));
+}
+
+//update data
+const updateSingleData = () => {
+    makeRequest({
+        url : 'https://jsonplaceholder.typicode.com/posts/1',
+        method: 'PATCH',
+        body: JSON.stringify({
+            title: 'foo one step next step update',
+        })
+    })
+    .then((res)=> console.log(res.data))
+    .catch((err) => console.log(err));
+}
+
+//delete data
+const deleteData = () => {
+    makeRequest({
+        url : 'https://jsonplaceholder.typicode.com/posts/1',
+        method: 'DELETE'
+    })
+    .then((res)=> console.log(res.data))
+    .catch((err) => console.log(err));
+}
+
+
+getData();
+postData();
+updateData();
+updateSingleData();
+deleteData();
